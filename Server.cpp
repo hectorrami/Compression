@@ -9,7 +9,7 @@
 #include <string.h>
 #include <string>
 
-/*called when a system call fais*/
+/*called when a system call fails*/
 void error(char *msg)
 {
     perror(msg);
@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
             
             std::cout << "Client: " << buffer << std::endl;
 
-            //std::cout << "BUFFER SIZE: " << strlen(buffer) << std::endl;
             int size = strlen(buffer);
             char receivedmsg[size];
             for(int i =0; i < size;i++)
@@ -97,14 +96,9 @@ int main(int argc, char *argv[])
              n = read(newsockfd, buffer, 256);
              if(n < 0) 
                 std::cerr << "ERROR reading from the socket\n";
-            
-            //std::cout << "\nClient Symbol: " << buffer << std::endl;
-
-            //std::cout << "BUFFER SIZE SYMBOL:" << strlen(buffer) << std::endl;
 
             char receivedsymbol = buffer[0];
-
-            //n = write(newsockfd,"Server:I got your second message",32);
+           
             if(n < 0)
                 std::cerr << "ERROR writing into socket\n";
 
