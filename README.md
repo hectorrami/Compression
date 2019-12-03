@@ -4,6 +4,49 @@
 ![Compression](https://user-images.githubusercontent.com/37157448/70022570-35ad2100-155a-11ea-8e17-d297972bbd29.png)
 ## AN EXAMPLE OF THE IMPLEMENTATION OF THE ALGORITHM
 ![](compressionexample3.gif)
+
+
+## The server program:
+
+```
+The user will execute this program using the following syntax:
+
+./exec_filename port_no
+
+where exec_filename is the name of your executable file, and port_no is the port number to create the socket.
+
+This program receives requests from the child threads of the client program using sockets.
+It will create a child process per request. For this reason, the parent process needs to handle 
+zombies processes implementing the fireman() call in the primer. 
+Each child process will generate the bit sequence of the requested symbol, 
+returning the result to the client program using sockets.
+```
+
+## The client program:
+
+```
+The user will execute this program using the following syntax:
+
+./exec_filename hostname port_no < input_filename
+
+where exec_filename is the name of your executable file, hostname is the address where the server program is located, port_no is the port number used by the server program, and input_filename is the name of the file with the message to compress.
+
+After calculating the frequency of each symbol in the message, your program must create a thread per each different symbol in the message. After the child threads finish processing the information, they will write the generated codes on a memory location available to the main thread. Finally, the main thread will print the information (step by step) about the compression process.
+The child threads will execute the following tasks:
+
+1. Send the message and the symbol to the server program using sockets. 
+
+2. Wait for the generated code from the server program.
+
+3. Write the received bit sequence into a memory location accessible by the main thread.
+
+4. Finish its execution.
+
+Input Format: Your program should read its input from stdin (C++ cin) and use input redirection. 
+ 
+This input file will only have letters, numbers, and the EOL character (that will be represented as <EOL>). 
+```
+
 ## A Closer Look 
 ![](sc.gif)
 
